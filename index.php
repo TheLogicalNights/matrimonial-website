@@ -64,6 +64,17 @@
                     </div>
                 </div>
             </section>
+            <section>
+                <div class="p-5 text-center bg-image plans">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="text-white">
+                                <a class="btn btn-outline-light btn-lg m-2" href="#" target="_blank" role="button">Click To Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
     <!-- MDB -->
