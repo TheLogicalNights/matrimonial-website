@@ -1,0 +1,27 @@
+.body {
+    background-color: #000;
+}
+
+.divider {
+    background-color: #eee;
+}
+
+#intro-example {
+    background-image: url('../img/1.jpg');
+}
+
+
+/* Default height for small devices */
+
+#intro-example {
+    height: 400px;
+}
+
+
+/* Height for devices larger than 992px */
+
+@media (min-width: 992px) {
+    #intro-example {
+        height: 600px;
+    }
+}
