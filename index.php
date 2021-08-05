@@ -323,6 +323,11 @@
             <!-- end of pricing  -->
         </div>
     </main>
+    <footer>
+      <?php
+        include './footer.php';
+      ?>
+    </footer>
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
