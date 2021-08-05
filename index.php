@@ -32,8 +32,7 @@
                         <div class="text-white">
                             <h1 class="mb-3">Meet Mr. & Meet Mrs.</h1>
                             <h4 class="mb-4">Love Stories Begins From Here.</h4>
-                            <a class="btn btn-outline-light btn-lg m-2" href="./login.php" role="button" rel="nofollow">Click To Login</a>
-                            <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Click To Register</a>
+                            <a class="btn btn-outline-light btn-lg m-2" href="./joinus.php" role="button" rel="nofollow">Click To Join Us</a>
                         </div>
                     </div>
                 </div>
