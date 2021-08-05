@@ -3,7 +3,7 @@
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand me-2 img-fulid" href="https://mdbgo.com/">
+    <a class="navbar-brand me-2 img-fulid" href="./index.php">
       <img
         src="./img/3.png" alt="logo"
         height="50"
@@ -38,12 +38,8 @@
       <!-- Left links -->
 
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-link px-3 me-2">
-          Login
-        </button>
-        <button type="button" class="btn btn-primary me-3">
-          Sign up for free
-        </button>
+        <a class="btn btn-outline-light btn-sm m-2" href="./login.php" role="button" rel="nofollow">Click To Login</a>
+        <a class="btn btn-outline-light btn-sm m-2" href="#" target="_blank" role="button">Click To Register</a>
       </div>
     </div>
     <!-- Collapsible wrapper -->
