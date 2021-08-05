@@ -38,8 +38,7 @@
       <!-- Left links -->
 
       <div class="d-flex align-items-center">
-        <a class="btn btn-outline-light btn-sm m-2" href="./login.php" role="button" rel="nofollow">Click To Login</a>
-        <a class="btn btn-outline-light btn-sm m-2" href="#" target="_blank" role="button">Click To Register</a>
+        <a class="btn btn-outline-light btn-sm m-2" href="./joinus.php" role="button" rel="nofollow">Join Us</a>
       </div>
     </div>
     <!-- Collapsible wrapper -->
