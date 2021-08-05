@@ -13,7 +13,6 @@
       />
       <h6 class="mt-2">MAITRI JANMOJANMICHI</h6>
     </a>
-
     <!-- Toggle button -->
     <button
       class="navbar-toggler"
