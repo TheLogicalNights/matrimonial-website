@@ -53,7 +53,7 @@
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="col-lg-7 mx-auto text-center text-white">
-                                    <h1>MEMBER LOGIN</h1>
+                                    <h1 class="mt-5">MEMBERS LOGIN</h1>
                                     <form class="mt-5 p-5">
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
