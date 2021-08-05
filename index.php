@@ -65,16 +65,263 @@
                 </div>
             </section>
             <section>
-            <div class="p-5 text-center bg-image plans">
-                <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <div class="text-white">
-                            <a class="btn btn-outline-light btn-lg m-2" href="#" target="_blank" role="button">Click To Register</a>
+                <div class="p-5 text-center bg-image" style="background-image: url('./img/5.jpg');height: 300px;">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="text-white">
+                                <a class="btn btn-outline-light btn-lg m-2" href="#" target="_blank" role="button">Click To Register</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </section>
+            <!-- success stories section -->
+            <section id="success" class="text-center">
+                <h2 class="my-5 text-white">Our Success</h2>
+                <!-- first row -->
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end first row -->
+                <!-- second row -->
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-2">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img
+                                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                  alt="..."
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                  </p>
+                                  <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end second row -->
+            </section>
+            <!-- end our success  -->
+            <section id="pricing" class="text-center">
+                <h2 class="text-white my-5">Our Plans</h2>
+                <div class="row justify-content-center p-3">
+                    <div class="col-md-2 m-2">
+                        <div class="card">
+                            <div class="card-header bg-white py-3">
+                                <p class="text-uppercase small mb-2"><strong>Free</strong></p>
+                                <h5 class="mb-0">Free</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer bg-white py-3">
+                                <button type="button" class="btn btn-success btn-sm">Get it</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 m-2">
+                        <div class="card border border-primary">
+                            <div class="card-header bg-white py-3">
+                                <p class="text-uppercase small mb-2"><strong>Essential</strong></p>
+                                <h5 class="mb-0">$19/month</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer bg-white py-3">
+                                <button type="button" class="btn btn-primary btn-sm">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 m-2">
+                        <div class="card">
+                            <div class="card-header bg-white py-3">
+                                <p class="text-uppercase small mb-2"><strong>Advanced</strong></p>
+                                <h5 class="mb-0">$49/month</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer bg-white py-3">
+                                <button type="button" class="btn btn-info btn-sm">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 m-2">
+                        <div class="card">
+                            <div class="card-header bg-white py-3">
+                                <p class="text-uppercase small mb-2"><strong>Enterprise</strong></p>
+                                <h5 class="mb-0">$189/month</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                    <li class="list-group-item">Feature</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer bg-white py-3">
+                                <button type="button" class="btn btn-info btn-sm">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end of pricing  -->
         </div>
     </main>
     <!-- MDB -->
