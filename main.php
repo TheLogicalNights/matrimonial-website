@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/main-style.css" />
 </head>
 
-<body class="body">
+<body>
     <!--Main Navigation-->
     <header>
         <!-- Navbar -->
@@ -26,7 +26,7 @@
             include './navbar.php';
         ?>
     </header>
-    <main>
+    <main  class="body">
         <section class="container">
             <div class="row my-5">
                 <div class="col-md-12 mt-5">
