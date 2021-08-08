@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^index$ index.php [L]
+RewriteRule ^professional$ professionalinfo.php [L]
