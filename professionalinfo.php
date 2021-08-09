@@ -50,67 +50,22 @@
                                             <label class="form-check-label" for="inlineRadio2">Buisness</label>
                                         </div>
                                     </div>
-                                    <form style="display: none;" id="jobForm">
-                                        <!-- Text input -->
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example3" class="form-control" required />
-                                            <label class="form-label text-white" for="form6Example3">Highest Qualification(Education)</label>
-                                        </div>
-                                        <!-- Text input -->
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example4" class="form-control" required />
-                                            <label class="form-label text-white" for="form6Example4">Date of birth</label>
-                                        </div>
-
-                                        <!-- Email input -->
-                                        <div class="form-outline mb-4">
-                                            <input type="email" id="form6Example5" class="form-control" required />
-                                            <label class="form-label text-white" for="form6Example5">Email</label>
-                                        </div>
-
-                                        <!-- Number input -->
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example6" class="form-control" limit=10 required />
-                                            <label class="form-label text-white" for="form6Example6">Phone</label>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example1">Blood group</label>
-                                                </div>
+                                    <form style="display: none;" id="businessForm">
+                                        <form style="display: none;" id="jobForm">
+                                            <!-- Text input -->
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="form6Example3" class="form-control" required />
+                                                <label class="form-label text-white" for="form6Example3">Highest Qualification(Education)</label>
                                             </div>
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example2">Religion</label>
-                                                </div>
+                                            <!-- Text input -->
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="form6Example4" class="form-control" required />
+                                                <label class="form-label text-white" for="form6Example4">Name of company</label>
                                             </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example1">Cast</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example2">Category</label>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <!-- Message input -->
-                                        <div class="form-outline mb-4">
-                                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                                            <label class="form-label text-white" for="form6Example7">Additional information</label>
-                                        </div>
-
-                                        <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Next</button>
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                                        </form>
                                     </form>
                                     <form style="display: none;" id="jobForm">
                                         <!-- Text input -->
@@ -121,58 +76,17 @@
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
                                             <input type="text" id="form6Example4" class="form-control" required />
-                                            <label class="form-label text-white" for="form6Example4">Date of birth</label>
+                                            <label class="form-label text-white" for="form6Example4">Name of company</label>
                                         </div>
 
-                                        <!-- Email input -->
+                                        <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form6Example5" class="form-control" required />
-                                            <label class="form-label text-white" for="form6Example5">Email</label>
-                                        </div>
-
-                                        <!-- Number input -->
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example6" class="form-control" limit=10 required />
-                                            <label class="form-label text-white" for="form6Example6">Phone</label>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example1">Blood group</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example2">Religion</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example1">Cast</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required />
-                                                    <label class="form-label text-white" for="form6Example2">Category</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Message input -->
-                                        <div class="form-outline mb-4">
-                                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                                            <label class="form-label text-white" for="form6Example7">Additional information</label>
+                                            <input type="text" id="form6Example4" class="form-control" required />
+                                            <label class="form-label text-white" for="form6Example4">Designation</label>
                                         </div>
 
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Next</button>
+                                        <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -197,8 +111,10 @@
         function check() {
             if (document.getElementById('job').checked) {
                 document.getElementById('jobForm').style.display = "block";
+                document.getElementById('businessForm').style.display = "none";
             } else if (document.getElementById('buisness').checked) {
                 document.getElementById('jobForm').style.display = "none";
+                document.getElementById('businessForm').style.display = "block";
             }
         }
     </script>
