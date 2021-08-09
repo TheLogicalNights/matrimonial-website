@@ -2,3 +2,5 @@ RewriteEngine on
 
 RewriteRule ^index$ index.php [L]
 RewriteRule ^professional$ professionalinfo.php [L]
+RewriteRule ^admin$ admin.php [L]
+RewriteRule ^adminlogin$ adminlogin.php [L]
