@@ -50,6 +50,15 @@
                 ';
                 unset($_SESSION['registerationFailed']);
             }
+            if(isset($_SESSION['emailAlreadyUsed']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['emailAlreadyUsed'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['emailAlreadyUsed']);
+            }
         ?>
             <section class="login">
                 <div class="container py-3">
@@ -75,16 +84,16 @@
                                     <!-- Pills content -->
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                            <form class="mt-5">
+                                            <form action="./controller/users/login.controller.php" method="POST" class="mt-5">
                                                 <!-- Email input -->
                                                 <div class="form-outline mb-4">
-                                                    <input type="email" id="loginName" class="form-control" />
+                                                    <input type="email" id="loginName" name="email" class="form-control" />
                                                     <label class="form-label text-white" for="loginName">Email or username</label>
                                                 </div>
 
                                                 <!-- Password input -->
                                                 <div class="form-outline mb-4">
-                                                    <input type="password" id="loginPassword" class="form-control" />
+                                                    <input type="password" id="loginPassword" name="password" class="form-control" />
                                                     <label class="form-label text-white" for="loginPassword">Password</label>
                                                 </div>
 
