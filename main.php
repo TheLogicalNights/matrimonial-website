@@ -1,3 +1,11 @@
+<?php
+    // session_start();
+    $_SESSION['loggedin'] = "true";
+    if(!isset($_SESSION['loggedin']))
+    {
+        header("Location: joinus.php" );
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
