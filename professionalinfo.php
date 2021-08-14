@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['userid']))
+    {
+        header("Location: joinus.php" );
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +33,18 @@
         ?>
         <!-- Navbar -->
         <main>
+        <?php
+            if(isset($_SESSION['alreadyentereddetails']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['alreadyentereddetails'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['alreadyentereddetails']);
+            }
+
+        ?>
             <section class="login">
                 <div class="container py-3">
                     <div class="row">
@@ -50,43 +69,43 @@
                                             <label class="form-check-label" for="inlineRadio2">Buisness</label>
                                         </div>
                                     </div>
-                                    <form style="display: none;" id="businessForm">
-                                        <form style="display: none;" id="jobForm">
+                                    <form  action="./code.php" style="display: none;" method="POST" id="businessForm">
+                                        <input type="hidden" name="type" value="buisness">
                                             <!-- Text input -->
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form6Example3" class="form-control" required />
+                                                <input type="text" id="form6Example3" name="qualification" class="form-control" required />
                                                 <label class="form-label text-white" for="form6Example3">Highest Qualification(Education)</label>
                                             </div>
                                             <!-- Text input -->
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form6Example4" class="form-control" required />
+                                                <input type="text" id="form6Example4" name="companyname" class="form-control" required />
                                                 <label class="form-label text-white" for="form6Example4">Name of company</label>
                                             </div>
 
                                             <!-- Submit button -->
-                                            <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
-                                        </form>
+                                            <button type="submit" name="proffressionalinfo" class="btn btn-primary btn-block mb-4">Submit</button>
                                     </form>
-                                    <form style="display: none;" id="jobForm">
+                                    <form action="./code.php" style="display: none;" id="jobForm" method="POST">
+                                        <input type="hidden" name="type" value="job">
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example3" class="form-control" required />
+                                            <input type="text" id="form6Example3" name="qualification" class="form-control" required />
                                             <label class="form-label text-white" for="form6Example3">Highest Qualification(Education)</label>
                                         </div>
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example4" class="form-control" required />
+                                            <input type="text" id="form6Example4" name="companyname" class="form-control" required />
                                             <label class="form-label text-white" for="form6Example4">Name of company</label>
                                         </div>
 
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example4" class="form-control" required />
+                                            <input type="text" id="form6Example4" name="designtion" class="form-control" required />
                                             <label class="form-label text-white" for="form6Example4">Designation</label>
                                         </div>
 
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                                        <button type="submit" name="proffressionalinfo" class="btn btn-primary btn-block mb-4">Submit</button>
                                     </form>
                                 </div>
                             </div>
