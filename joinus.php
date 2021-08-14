@@ -1,3 +1,6 @@
+<?php
+    include './model/config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +18,8 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- sweet alert  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="body">
@@ -26,6 +31,26 @@
         ?>
         <!-- Navbar -->
         <main>
+        <?php
+            if(isset($_SESSION['registeredSuccessfully']))
+            {
+                echo '
+                <script>
+                    swal("Success..!", "'.$_SESSION['registeredSuccessfully'].'", "success");
+                </script>
+                ';
+                unset($_SESSION['registeredSuccessfully']);
+            }
+            if(isset($_SESSION['registerationFailed']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['registerationFailed'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['registerationFailed']);
+            }
+        ?>
             <section class="login">
                 <div class="container py-3">
                     <div class="row">
@@ -84,84 +109,48 @@
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                                            <?php
-                                                if (!isset($_SESSION['otpsuccess']) && !isset($_SESSION['otpverified'])) 
-                                                {
-                                            ?>
-                                                <form action="#" method="POST" id="EmailForm">
-                                                    <!-- Email input -->
-                                                    <div class="form-outline mb-4">
-                                                        <input type="email" id="registerEmail" class="form-control" />
-                                                        <label class="form-label text-white" for="registerEmail">Email</label>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary btn-block mb-3">Generate OTP</button>
-                                                </form>
-                                            <?php
-                                                } // End of if
-                                            ?>
-                                            <?php
-                                                if(isset($_SESSION['otpsuccess']))
-                                                {
-                                            ?>
-                                                    <form action="#" method="POST" id="EmailForm">
-                                                        <div class="form-outline mb-4">
-                                                            <input type="number" id="registerEmail" class="form-control" />
-                                                            <label class="form-label text-white" for="registerEmail">Enter OTP</label>
-                                                        </div>
-                                                    <button type="submit" class="btn btn-primary btn-block mb-3">Verify OTP</button>
-                                                </form>
-                                            <?php
-                                                }
-                                            ?>
-                                            <?php
-                                                if (isset($_SESSION['otpverified']))
-                                                {
-                                            ?>
-                                                    <form class="mt-5">
-                                                        <!-- Name input -->
-                                                        <div class="form-outline mb-4">
-                                                            <input type="text" id="registerName" class="form-control" />
-                                                            <label class="form-label text-white" for="registerName">Name</label>
-                                                        </div>
+                                            <form action="./controller/users/createUser.controller.php" method="POST" class="mt-5">
+                                                <!-- Name input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="registerName" name="name" class="form-control" />
+                                                    <label class="form-label text-white" for="registerName">Name</label>
+                                                </div>
 
-                                                        <!-- Username input -->
-                                                        <div class="form-outline mb-4">
-                                                            <input type="text" id="registerUsername" class="form-control" />
-                                                            <label class="form-label text-white" for="registerUsername">Username</label>
-                                                        </div>
+                                                <!-- Username input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="registerUsername" name="username" class="form-control" />
+                                                    <label class="form-label text-white" for="registerUsername">Username</label>
+                                                </div>
 
-                                                        <!-- Email input -->
-                                                        <div class="form-outline mb-4">
-                                                            <input type="email" id="registerEmail" class="form-control" />
-                                                            <label class="form-label text-white" for="registerEmail">Email</label>
-                                                        </div>
+                                                <!-- Email input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="email" id="registerEmail" name="email" class="form-control" />
+                                                    <label class="form-label text-white" for="registerEmail">Email</label>
+                                                </div>
 
-                                                        <!-- Password input -->
-                                                        <div class="form-outline mb-4">
-                                                            <input type="password" id="registerPassword" class="form-control" />
-                                                            <label class="form-label text-white" for="registerPassword">Password</label>
-                                                        </div>
+                                                <!-- Password input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="password" id="registerPassword" class="form-control" />
+                                                    <label class="form-label text-white" for="registerPassword">Password</label>
+                                                </div>
 
-                                                        <!-- Repeat Password input -->
-                                                        <div class="form-outline mb-4">
-                                                            <input type="password" id="registerRepeatPassword" class="form-control" />
-                                                            <label class="form-label text-white" for="registerRepeatPassword">Repeat password</label>
-                                                        </div>
+                                                <!-- Repeat Password input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="password" id="registerRepeatPassword" name="password" class="form-control" />
+                                                    <label class="form-label text-white" for="registerRepeatPassword">Repeat password</label>
+                                                </div>
 
-                                                        <!-- Checkbox -->
-                                                        <div class="form-check d-flex justify-content-center mb-4">
-                                                            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
-                                                            <label class="form-check-label text-white" for="registerCheck">
-                                                                I have read and agree to the terms
-                                                            </label>
-                                                        </div>
+                                                <!-- Checkbox -->
+                                                <div class="form-check d-flex justify-content-center mb-4">
+                                                    <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
+                                                    <label class="form-check-label text-white" for="registerCheck">
+                                                        I have read and agree to the terms
+                                                    </label>
+                                                </div>
 
-                                                        <!-- Submit button -->
-                                                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-                                                    </form>
-                                            <?php
-                                                }
-                                            ?>
+                                                <!-- Submit button -->
+                                                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- Pills content -->
