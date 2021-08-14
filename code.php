@@ -1,74 +1,75 @@
 <?php
-    require './PHPMailer/PHPMailerAutoload.php';
-    require './PHPMailer/class.phpmailer.php';
-    require './PHPMailer/class.smtp.php';
-    include './model/user.model.php';
-    include './model/config/database.model.php';
+    session_start();
+    include './database.model.php';
     
-    $from = "noreply@maitrijanmojanmachi.com";
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //          Mail Sender
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function smtpMailer($to,$from,$subject,$body)
+    if($_SERVER['REQUEST_METHOD']=="POST")
     {
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->SMTPSecure = 'ssl';
-        $mail->SMTPDebug = 1;
-        $mail->Host = 'smtp.hostinger.com';
-        $mail->Port = 465;
-        $mail->SMTPAuth = true;
-        $mail->Username = $from;
-        $mail->Password = 'Maitri@411011@';
-        $mail->setFrom($from, 'Maitri Janmojanmachi');
-        $mail->addReplyTo($from, 'Maitri Janmojanmachi');
-        $mail->addAddress($to, 'Swapnil Ramesh Adhav');
-        $mail->Subject = $subject;
-        $mail->Body = $body;
-        if (!$mail->send()) {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            echo 'The email message was sent.';
-            echo $_SESSION['otpsuccess'];
-        }
-    }
-    if(isset($_POST['generateotp']))
-    {
-        $email = $_POST['email'];
-        $email = "swapniladhav560@gmail.com";
-        $db = new Database();
-        $conn = $db->getConnection();
-        $user = new user($conn);
-        $user->email = $email;
-        $iNo = $user->chkMail();
-        if($iNo>0)
+        ////////////////////////////////////////////////////////////////////
+        //
+        // User Registration
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['signup']))
         {
-            $_SESSION['RegisterFailure'] = "This email address is already used please try another one.";
-            header('Location: register.php');
-        }
-        else
-        {
-            $otptosend = rand(99999,999999);
-            // $to = $_POST['email'];
-            $to = "swapniladhav560@gmail.com";
-            // $_SESSION['email'] = $_POST['email'];
-            $subject = "Email Verification";
-            $message = "Hello sir/mam your OTP for email verifivation is ".$otptosend;
-        
-            if(smtpMailer($to,$from,$subject,$message))
-            {
+            $userid = uniqid();
+            $name = $_POST['name'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+            $isset = 0;
 
-                $_SESSION['otp'] = $otptosend;
-                $_SESSION['email'] = $to;
-                $_SESSION['otpsuccess'] = "success";
-                // header('Location: register.php');
+            $query = "select * from users where email = '$email'";
+            $result = mysqli_query($conn,$query);
+            if (mysqli_num_rows($result) > 0)
+            {
+                $_SESSION['emailAlreadyUsed'] = "Sorry!..This Email Address is already used, Please try another one...";
+                header("Location: ".$BASE_URL."joinus.php");
             }
             else
             {
-                $_SESSION['RegisterFailure'] = "OTP not send..! Please try again.";
-                // header('Location: register.php');
+                $query = "insert into users(userid,name,username,email,password,isset) values ('$userid','$name','$username','$email','$password','$isset')";
+                if($conn->query($query))
+                {
+                    $_SESSION['registeredSuccessfully'] = "Congratulations!..You Have Registered Successfully...";
+                    header("Location: ./joinus.php");
+                }
+                else
+                {
+                    $_SESSION['registerationFailed'] = "Error!..Unable to Register, Please try again...";
+                    header("Location: ".$BASE_URL."joinus.php");
+                }
+            }
+        }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // User Login
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['signin']))
+        {
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+
+            $query = "SELECT * from users where email = '$email' and password = '$password'";
+            $result = mysqli_query($conn,$query);
+            $row = mysqli_fetch_assoc($result);
+            if(mysqli_num_rows($result)==1)
+            {
+                if($row['isset']==0)
+                {
+                    $_SESSION['userid'] = $row['userid'];
+                    header("Location: ./personal.php");
+                }
+                else
+                {
+                    $_SESSION['userid'] = $row['userid'];
+                    header("Location: ./main.php");
+                }
+            }
+            else
+            {
+                $_SESSION['loginfailed'] = "Sorry!..Unable to login, Please check email or password and try again...";
+                header("Location: ./joinus.php");
             }
         }
     }
