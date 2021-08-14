@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include './model/config/config.php';
 ?>
 <!DOCTYPE html>
@@ -59,6 +60,15 @@
                 ';
                 unset($_SESSION['emailAlreadyUsed']);
             }
+            if(isset($_SESSION['loginfailed']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['loginfailed'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['loginfailed']);
+            }
         ?>
             <section class="login">
                 <div class="container py-3">
@@ -84,7 +94,7 @@
                                     <!-- Pills content -->
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                            <form action="./controller/users/login.controller.php" method="POST" class="mt-5">
+                                            <form action="./code.php" method="POST" class="mt-5">
                                                 <!-- Email input -->
                                                 <div class="form-outline mb-4">
                                                     <input type="email" id="loginName" name="email" class="form-control" />
@@ -114,11 +124,11 @@
                                                 </div>
 
                                                 <!-- Submit button -->
-                                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                                <button type="submit" class="btn btn-primary btn-block mb-4" name="signin">Sign in</button>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                                            <form action="./controller/users/createUser.controller.php" method="POST" class="mt-5">
+                                            <form action="./code.php" method="POST" class="mt-5">
                                                 <!-- Name input -->
                                                 <div class="form-outline mb-4">
                                                     <input type="text" id="registerName" name="name" class="form-control" />
@@ -158,7 +168,7 @@
                                                 </div>
 
                                                 <!-- Submit button -->
-                                                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                                                <button type="submit" name="signup" class="btn btn-primary btn-block mb-3">Sign up</button>
                                             </form>
                                         </div>
                                     </div>
