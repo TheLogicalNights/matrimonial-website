@@ -44,7 +44,7 @@
                                 <div class="col-lg-7 mx-auto text-center text-white">
                                     <h1 class="mt-3 mb-4">PERSONAL INFORMATION</h1>
                                     <!-- form -->
-                                    <form action="./controller/personal/personal.controller.php" method="POST">
+                                    <form action="./code.php" method="POST">
                                         <!-- 2 column grid layout with text inputs for the first and last names -->
                                         <div class="row mb-4">
                                             <div class="col">
@@ -134,7 +134,7 @@
                                         </div>
 
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Next</button>
+                                        <button type="submit" name="personalinfo" class="btn btn-primary btn-block mb-4">Next</button>
                                     </form>
                                 </div>
                             </div>
