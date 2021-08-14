@@ -16,15 +16,25 @@
     $user->name = $name;
     $user->email = $email;
     $user->password = $password;
+    $user->isset = 0;
 
-    if($user->createUser())
+    $iNo = $user->chkMail();
+    if($iNo!=0)
     {
-        $_SESSION['registeredSuccessfully'] = "Congratulations!..You Have Registered Successfully...";
+        $_SESSION['emailAlreadyUsed'] = "Sorry!..This Email Address is already used, Please try another one...";
         header("Location: ".$BASE_URL."joinus.php");
     }
     else
     {
-        $_SESSION['registerationFailed'] = "Error!..Unable to Register, Please try again...";
-        header("Location: ".$BASE_URL."joinus.php");
+        if($user->createUser())
+        {
+            $_SESSION['registeredSuccessfully'] = "Congratulations!..You Have Registered Successfully...";
+            header("Location: ".$BASE_URL."joinus.php");
+        }
+        else
+        {
+            $_SESSION['registerationFailed'] = "Error!..Unable to Register, Please try again...";
+            header("Location: ".$BASE_URL."joinus.php");
+        }
     }
 ?>
