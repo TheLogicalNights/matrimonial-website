@@ -1,7 +1,6 @@
 <?php
-    // session_start();
-    $_SESSION['loggedin'] = "true";
-    if(!isset($_SESSION['loggedin']))
+    session_start();
+    if(!isset($_SESSION['userid']))
     {
         header("Location: joinus.php" );
     }
