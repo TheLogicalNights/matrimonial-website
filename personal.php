@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['userid']))
+    {
+        header("Location: joinus.php" );
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,18 +44,18 @@
                                 <div class="col-lg-7 mx-auto text-center text-white">
                                     <h1 class="mt-3 mb-4">PERSONAL INFORMATION</h1>
                                     <!-- form -->
-                                    <form>
+                                    <form action="./controller/personal/personal.controller.php" method="POST">
                                         <!-- 2 column grid layout with text inputs for the first and last names -->
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required/>
+                                                    <input type="text" id="form6Example1" name="firstname" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example1">First name</label>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required/>
+                                                    <input type="text" id="form6Example2" name="lastname" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example2">Last name</label>
                                                 </div>
                                             </div>
@@ -56,37 +63,37 @@
 
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example3" class="form-control" required/>
+                                            <input type="text" id="form6Example3" name="fathersname" class="form-control" required/>
                                             <label class="form-label text-white" for="form6Example3">Father's name</label>
                                         </div>
 
                                         <!-- Text input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example4" class="form-control" required/>
+                                            <input type="text" id="form6Example4" name="dob" class="form-control" required/>
                                             <label class="form-label text-white" for="form6Example4">Date of birth</label>
                                         </div>
 
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form6Example5" class="form-control" required/>
+                                            <input type="email" id="form6Example5" name="email" class="form-control" required/>
                                             <label class="form-label text-white" for="form6Example5">Email</label>
                                         </div>
 
                                         <!-- Number input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form6Example6" class="form-control" limit=10 required/>
+                                            <input type="text" id="form6Example6" name="phoneno" class="form-control" limit=10 required/>
                                             <label class="form-label text-white" for="form6Example6">Phone</label>
                                         </div>
 
                                         <!-- Radio buttons -->
                                         <div class="form-outline mb-4">
                                             <div class="form-check form-check-inline ">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required/>
+                                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required/>
                                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required/>
+                                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" required/>
                                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                                             </div>
                                         </div>
@@ -94,13 +101,13 @@
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required/>
+                                                    <input type="text" id="form6Example1" name="bloodgroup" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example1">Blood group</label>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required/>
+                                                    <input type="text" id="form6Example2" name="religion" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example2">Religion</label>
                                                 </div>
                                             </div>
@@ -108,13 +115,13 @@
                                         <div class="row mb-4">
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example1" class="form-control" required/>
+                                                    <input type="text" id="form6Example1" name="cast" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example1">Cast</label>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <input type="text" id="form6Example2" class="form-control" required/>
+                                                    <input type="text" id="form6Example2" name="category" class="form-control" required/>
                                                     <label class="form-label text-white" for="form6Example2">Category</label>
                                                 </div>
                                             </div>
@@ -122,7 +129,7 @@
 
                                         <!-- Message input -->
                                         <div class="form-outline mb-4">
-                                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                                            <textarea class="form-control" name="otherinfo" id="form6Example7" rows="4"></textarea>
                                             <label class="form-label text-white" for="form6Example7">Additional information</label>
                                         </div>
 
