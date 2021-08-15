@@ -4,6 +4,32 @@
     {
         header("Location: joinus.php" );
     }
+    include './database.model.php';
+    function imageResize($width, $height, $target) 
+    {
+
+        //takes the larger size of the width and height and applies the
+        //formula accordingly...this is so this script will work
+        //dynamically with any size image
+        
+        if ($width > $height) {
+        $percentage = ($target / $width);
+        } else {
+        $percentage = ($target / $height);
+        }
+        
+        //gets the new value and applies the percentage, then rounds the value
+        $width = round($width * $percentage);
+        $height = round($height * $percentage);
+        
+        //returns the new sizes in html image tag format...this is so you
+        // can plug this function inside an image tag and just get the
+        
+        return "width=".$width." height=".$height."";
+        
+    }
+    $query = "select * from profile";
+    $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +67,7 @@
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- card 1 -->
-                    <div class="col-lg-3 col-md-4 col-sm-3">
+                    <!-- <div class="col-lg-3 col-md-4 col-sm-3">
                         <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                             <div class="person-img">
                                 <img src="./img/1.jpg" class="img-fluid" alt="profile-picture">
@@ -58,88 +84,42 @@
                             </div>
                             <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">Click To Join Us</a>
                         </div>
-                    </div>
-                    <!-- card 1 -->
-                    <!-- cards 2 -->
-                    <div class="col-lg-3 col-md-4 col-sm-3">
-                        <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                            <div class="person-img">
-                                <img src="./img/1.jpg" class="img-fluid" alt="profile-picture">
+                    </div> -->
+                    <?php
+                        while($row = mysqli_fetch_assoc($result))
+                        {
+                            $userid = $row['userid'];
+                            $query = "select * from users where userid = '$userid'";
+                            $result = mysqli_query($conn, $query);
+                            $details = mysqli_fetch_assoc($result);
+                            $query = "select * from pictures where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query);
+                            $pictures = mysqli_fetch_assoc($result1);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $mysock1 = getimagesize($pictures['pic1']);
+                    ?>
+                            <div class="col-lg-3 col-md-4 col-sm-3">
+                                <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                    <div class="person-img">
+                                        <img src="<?php echo $pictures['profilepic']; ?>" 
+                                        <?php echo imageResize($mysock[0],$mysock[1], 250); ?> alt="profile-picture">
+                                    </div>
+                                    <div class="person-name my-2 text-center">
+                                        <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                    </div>
+                                    <!-- <div class="info">
+                                        <h6 class="text-white">Web Developer</h6>
+                                    </div> -->
+                                    <div class="social-icons">
+                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
+                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
+                                    </div>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">View Profile</a>
+                                </div>
                             </div>
-                            <div class="person-name my-2">
-                                <h3 class="text-white">Swapnil Adhav</h3>
-                            </div>
-                            <div class="info">
-                                <h6 class="text-white">Web Developer</h6>
-                            </div>
-                            <div class="social-icons">
-                                <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
-                                <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                            </div>
-                            <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">Click To Join Us</a>
-                        </div>
-                    </div>
-                    <!-- cards 2 -->
-                    <!-- card 3 -->
-                    <div class="col-lg-3 col-md-4 col-sm-3">
-                        <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                            <div class="person-img">
-                                <img src="./img/1.jpg" class="img-fluid" alt="profile-picture">
-                            </div>
-                            <div class="person-name my-2">
-                                <h3 class="text-white">Swapnil Adhav</h3>
-                            </div>
-                            <div class="info">
-                                <h6 class="text-white">Web Developer</h6>
-                            </div>
-                            <div class="social-icons">
-                                <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
-                                <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                            </div>
-                            <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">Click To Join Us</a>
-                        </div>
-                    </div>
-                    <!-- card 3 -->
-                    <!-- card 4 -->
-                    <div class="col-lg-3 col-md-4 col-sm-3">
-                        <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                            <div class="person-img">
-                                <img src="./img/1.jpg" class="img-fluid" alt="profile-picture">
-                            </div>
-                            <div class="person-name my-2">
-                                <h3 class="text-white">Swapnil Adhav</h3>
-                            </div>
-                            <div class="info">
-                                <h6 class="text-white">Web Developer</h6>
-                            </div>
-                            <div class="social-icons">
-                                <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
-                                <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                            </div>
-                            <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">Click To Join Us</a>
-                        </div>
-                    </div>
-                    <!-- card 4 -->
-                    <!-- card 5 -->
-                    <div class="col-lg-3 col-md-4 col-sm-3">
-                        <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                            <div class="person-img">
-                                <img src="./img/1.jpg" class="img-fluid" alt="profile-picture">
-                            </div>
-                            <div class="person-name my-2">
-                                <h3 class="text-white">Swapnil Adhav</h3>
-                            </div>
-                            <div class="info">
-                                <h6 class="text-white">Web Developer</h6>
-                            </div>
-                            <div class="social-icons">
-                                <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
-                                <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                            </div>
-                            <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">Click To Join Us</a>
-                        </div>
-                    </div>
-                    <!-- card 5 -->
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </section>
