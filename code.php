@@ -181,7 +181,7 @@
             if(mysqli_num_rows($result)==1)
             {
                 $_SESSION['alreadyentereddetails'] = "Sorry!.., You have already entered personal details. You cannot enter it again...";
-                header("Location: ./main.php");
+                header("Location: ./photos.php");
             }
             else
             {
@@ -195,7 +195,7 @@
                         $query = "insert into profile(userid, isactive, plan, purchased_on, expiry_date) values('$userid','$isactive','$plan','$purchasedOn','$expiry_date')"; 
                         if(mysqli_query($conn,$query))
                         {
-                            header("Location: ./main.php");  
+                            header("Location: ./photos.php");  
                         }
                         else
                         {
@@ -208,6 +208,99 @@
                     header("Location: ./professionalinfo.php");
                 }
             }            
+        }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // Upload images
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['uploadpics']))
+        {
+            $foldername = $_SESSION['userid'];
+            $profile_dir = "./profilepictures/$foldername/";
+            $picture_dir = "./pictures/$foldername/";
+
+            $target_file = $profile_dir . basename($_FILES["profilepic"]["name"]);
+            $pic1 = $picture_dir . basename($_FILES["pic1"]["name"]);
+            $pic2 = $picture_dir . basename($_FILES["pic2"]["name"]);
+            $pic3 = $picture_dir . basename($_FILES["pic3"]["name"]);
+
+            $profileFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $pic1FileType = strtolower(pathinfo($pic1,PATHINFO_EXTENSION));
+            $pic2FileType = strtolower(pathinfo($pic2,PATHINFO_EXTENSION));
+            $pic3FileType = strtolower(pathinfo($pic3,PATHINFO_EXTENSION));
+            
+            if (!file_exists($profile_dir)) 
+            { 
+                mkdir($profile_dir, 0777, true);
+            }
+            if(!file_exists($picture_dir))
+            {
+                mkdir($picture_dir,0777,true);
+            }
+            echo $profileFileType."<br>";
+            if($profileFileType != "jpg" && $profileFileType != "png" && $profileFileType != "jpeg" && 
+                $pic1FileType != "jpg" && $pic1FileType != "png" && $pic1FileType != "jpeg" && 
+                $pic2FileType != "jpg" && $pic2FileType != "png" && $pic2FileType != "jpeg" && 
+                $pic3FileType != "jpg" && $pic3FileType != "png" && $pic3FileType != "jpeg") 
+            {
+                $_SESSION['imgformatfailure'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                header("Location: ./photos.php");
+            }
+            else
+            {
+                $query = "select * from pictures where userid = '$foldername'";
+                $result = mysqli_query($conn,$query);
+                if(mysqli_num_rows($result)==1)
+                {
+                    $_SESSION['alreadyentereddetails'] = "Sorry!.., You have already entered personal details. You cannot enter it again...";
+                    header("Location: ./mail.php");
+                }
+                else
+                {
+                    if (move_uploaded_file($_FILES["profilepic"]["tmp_name"], $target_file))
+                    {
+                        if (move_uploaded_file($_FILES["pic1"]["tmp_name"], $pic1))
+                        {
+                            if (move_uploaded_file($_FILES["pic2"]["tmp_name"], $pic2))
+                            {
+                                if (move_uploaded_file($_FILES["pic3"]["tmp_name"], $pic3))
+                                {
+                                    $query = "insert into pictures(userid, profilepic, pic1, pic2, pic3) values('$foldername','$target_file','$pic1','$pic2','$pic3')";
+                                    if(mysqli_query($conn,$query))
+                                    {
+                                        header("Location: ./main.php");  
+                                    }
+                                    else
+                                    {   
+                                        echo mysqli_error($conn);
+                                    }
+                                }
+                                else
+                                {
+                                    $_SESSION['profilepictureuploadfailure'] = "We have error while uploading your picture 3";
+                                    header("Location: ./photos.php");
+                                }
+                            }
+                            else
+                            {
+                                $_SESSION['profilepictureuploadfailure'] = "We have error while uploading your picture 2";
+                                header("Location: ./photos.php");
+                            }
+                        }
+                        else
+                        {
+                            $_SESSION['profilepictureuploadfailure'] = "We have error while uploading your picture 1";
+                            header("Location: ./photos.php");
+                        }    
+                    }
+                    else
+                    {
+                        $_SESSION['profilepictureuploadfailure'] = "We have error while uploading your profile picture";
+                        header("Location: ./photos.php");
+                    }
+                }
+            }
         }
     }
 ?>
