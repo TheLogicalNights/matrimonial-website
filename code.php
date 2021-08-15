@@ -164,6 +164,10 @@
             $qualification = $_POST['qualification'];
             $companyname = $_POST['companyname'];
             $designation = "";
+            $isactive = 0;
+            $plan = "";
+            $purchasedOn = date("Y-m-d");
+            $expiry_date = date("Y-m-d");
             if($type=="buisness")
             {
                 $designation = "owner";
@@ -184,12 +188,23 @@
                 $query = "insert into proffessional_info(userid,type,highest_qualification,company_name,designation) values('$userid','$type','$qualification','$companyname','$designation')";
                 if(mysqli_query($conn,$query))
                 {
-                    echo "success...";
-                    header("Location: ./main.php");   
+                    $query = "update users set isset = '1' where userid = '$userid'";
+                    if(mysqli_query($conn,$query))
+                    {
+                        echo "update success......";
+                        $query = "insert into profile(userid, isactive, plan, purchased_on, expiry_date) values('$userid','$isactive','$plan','$purchasedOn','$expiry_date')"; 
+                        if(mysqli_query($conn,$query))
+                        {
+                            header("Location: ./main.php");  
+                        }
+                        else
+                        {
+                            echo mysqli_error($conn);
+                        }
+                    } 
                 }
                 else
                 {
-                    echo "failed";
                     header("Location: ./professionalinfo.php");
                 }
             }            
