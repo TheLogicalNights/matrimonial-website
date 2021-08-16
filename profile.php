@@ -44,7 +44,6 @@ $mysock3 = getimagesize($pictures['pic3']);
     <!-- Custom styles -->
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <link rel="stylesheet" href="css/main-style.css" />
-    <link rel="stylesheet" href="css/profile-style.css" />
 </head>
 
 <body>
