@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['userid']))
-    {
-        header("Location: joinus.php" );
-    }
-    include './database.model.php';
-    include './imgResize.php';
-    $query = "select * from profile";
-    $result = mysqli_query($conn, $query);
+session_start();
+$myid = $_SESSION['userid'];
+if (!isset($_SESSION['userid'])) {
+    header("Location: joinus.php");
+}
+include './database.model.php';
+include './imgResize.php';
+$query = "select * from profile";
+$result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,10 +34,27 @@
     <header>
         <!-- Navbar -->
         <?php
-            include './navbar.php';
+        include './navbar.php';
         ?>
     </header>
-    <main  class="body">
+    <main class="body">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upgrade to pro</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">You don't have subscription to any plan to use more features please subscribe to any one plan.For More details please contact to customer care.</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="container">
             <div class="row my-5">
                 <div class="col-md-12 mt-5">
@@ -64,38 +81,53 @@
                         </div>
                     </div> -->
                     <?php
-                        while($row = mysqli_fetch_assoc($result))
-                        {
-                            $userid = $row['userid'];
-                            $query = "select * from users where userid = '$userid'";
-                            $result = mysqli_query($conn, $query);
-                            $details = mysqli_fetch_assoc($result);
-                            $query = "select * from pictures where userid = '$userid'";
-                            $result1 = mysqli_query($conn, $query);
-                            $pictures = mysqli_fetch_assoc($result1);
-                            $mysock = getimagesize($pictures['profilepic']);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $userid = $row['userid'];
+                        $query = "select * from users where userid = '$userid'";
+                        $result = mysqli_query($conn, $query);
+                        $details = mysqli_fetch_assoc($result);
+                        $query = "select * from pictures where userid = '$userid'";
+                        $result1 = mysqli_query($conn, $query);
+                        $pictures = mysqli_fetch_assoc($result1);
+                        $mysock = getimagesize($pictures['profilepic']);
+                        $query = "select * from profile where userid = '$myid'";
+                        $result = mysqli_query($conn, $query);
+                        $personal = mysqli_fetch_assoc($result);
                     ?>
-                            <div class="col-lg-3 col-md-4 col-sm-3">
-                                <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                                    <div class="person-img">
-                                        <img src="<?php echo $pictures['profilepic']; ?>" 
-                                        <?php echo imageResize($mysock[0],$mysock[1], 250); ?> alt="profile-picture">
-                                    </div>
-                                    <div class="person-name my-2 text-center">
-                                        <h3 class="text-white"><?php echo $details['name']; ?></h3>
-                                    </div>
-                                    <!-- <div class="info">
+                        <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                <div class="person-img">
+                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
+                                </div>
+                                <div class="person-name my-2 text-center">
+                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                </div>
+                                <!-- <div class="info">
                                         <h6 class="text-white">Web Developer</h6>
                                     </div> -->
-                                    <div class="social-icons">
+                                <!-- <div class="social-icons">
                                         <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
                                         <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                                    </div>
+                                    </div> -->
+                                <?php
+                                if ($personal['isactive'] == 0) {
+
+                                ?>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                        View Profile
+                                    </button>
+                                <?php
+                                } else {
+                                ?>
                                     <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">View Profile</a>
-                                </div>
+                                <?php
+                                }
+                                ?>
                             </div>
+                        </div>
                     <?php
-                        }
+                    }
                     ?>
                 </div>
             </div>
