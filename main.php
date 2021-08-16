@@ -5,29 +5,7 @@
         header("Location: joinus.php" );
     }
     include './database.model.php';
-    function imageResize($width, $height, $target) 
-    {
-
-        //takes the larger size of the width and height and applies the
-        //formula accordingly...this is so this script will work
-        //dynamically with any size image
-        
-        if ($width > $height) {
-        $percentage = ($target / $width);
-        } else {
-        $percentage = ($target / $height);
-        }
-        
-        //gets the new value and applies the percentage, then rounds the value
-        $width = round($width * $percentage);
-        $height = round($height * $percentage);
-        
-        //returns the new sizes in html image tag format...this is so you
-        // can plug this function inside an image tag and just get the
-        
-        return "width=".$width." height=".$height."";
-        
-    }
+    include './imgResize.php';
     $query = "select * from profile";
     $result = mysqli_query($conn, $query);
 ?>
@@ -96,7 +74,6 @@
                             $result1 = mysqli_query($conn, $query);
                             $pictures = mysqli_fetch_assoc($result1);
                             $mysock = getimagesize($pictures['profilepic']);
-                            $mysock1 = getimagesize($pictures['pic1']);
                     ?>
                             <div class="col-lg-3 col-md-4 col-sm-3">
                                 <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
