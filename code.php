@@ -302,5 +302,18 @@
                 }
             }
         }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // View Profile
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['viewprofile']))
+        {
+            $id = $_POST['id'];
+
+            $query = "select * from profile where userid = '$id'";
+            $result = mysqli_query($conn,$query);
+            $iNo = mysqli_num_rows($result);
+        }
     }
 ?>
