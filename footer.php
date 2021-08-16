@@ -3,91 +3,91 @@
   <!-- Grid container -->
   <div class="container p-4">
     <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
+    <!-- <section class="mb-4">
+      Facebook
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-facebook-f"></i
       ></a>
 
-      <!-- Twitter -->
+      Twitter
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-twitter"></i
       ></a>
 
-      <!-- Google -->
+      Google
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-google"></i
       ></a>
 
-      <!-- Instagram -->
+      Instagram
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-instagram"></i
       ></a>
 
-      <!-- Linkedin -->
+      Linkedin
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-linkedin-in"></i
       ></a>
 
-      <!-- Github -->
+      Github
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-github"></i
       ></a>
-    </section>
+    </section> -->
     <!-- Section: Social media -->
 
     <!-- Section: Form -->
-    <section class="">
+    <!-- <section class="">
       <form action="">
-        <!--Grid row-->
+        Grid row
         <div class="row d-flex justify-content-center">
-          <!--Grid column-->
+          Grid column
           <div class="col-auto">
             <p class="pt-2">
               <strong>Sign up for our newsletter</strong>
             </p>
           </div>
-          <!--Grid column-->
+          Grid column
 
-          <!--Grid column-->
+          Grid column
           <div class="col-md-5 col-12">
-            <!-- Email input -->
+            Email input
             <div class="form-outline form-white mb-4">
               <input type="email" id="form5Example2" class="form-control" />
               <label class="form-label" for="form5Example2">Email address</label>
             </div>
           </div>
-          <!--Grid column-->
+          Grid column
 
-          <!--Grid column-->
+          Grid column
           <div class="col-auto">
-            <!-- Submit button -->
+            Submit button
             <button type="submit" class="btn btn-outline-light mb-4">
               Subscribe
             </button>
           </div>
-          <!--Grid column-->
+          Grid column
         </div>
-        <!--Grid row-->
+        Grid row
       </form>
-    </section>
+    </section> -->
     <!-- Section: Form -->
 
     <!-- Section: Text -->
-    <section class="mb-4">
+    <!-- <section class="mb-4">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
         repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
         eum harum corrupti dicta, aliquam sequi voluptate quas.
       </p>
     </section>
-    <!-- Section: Text -->
+    Section: Text -->
 
     <!-- Section: Links -->
-    <section class="">
-      <!--Grid row-->
+    <!-- <section class="">
+      Grid row
       <div class="row">
-        <!--Grid column-->
+        Grid column
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
@@ -106,9 +106,9 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
+        Grid column
 
-        <!--Grid column-->
+        Grid column
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
@@ -127,9 +127,9 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
+        Grid column
 
-        <!--Grid column-->
+        Grid column
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
@@ -148,9 +148,9 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
+        Grid column
 
-        <!--Grid column-->
+        Grid column
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
@@ -169,18 +169,18 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
+        Grid column
       </div>
-      <!--Grid row-->
-    </section>
+      Grid row
+    </section> -->
     <!-- Section: Links -->
   </div>
   <!-- Grid container -->
 
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    © 2021 Copyright:
+    <a class="text-white" href="https://maitrijanmojanmachi.com/">Maitri Janmojanmichi</a>
   </div>
   <!-- Copyright -->
 </footer>
