@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
