@@ -315,5 +315,15 @@
             $result = mysqli_query($conn,$query);
             $iNo = mysqli_num_rows($result);
         }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // Logout
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['logout']))
+        {
+            session_unset();
+            header("Location: ./joinus.php");
+        }
     }
 ?>
