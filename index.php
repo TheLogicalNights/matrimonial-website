@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './imgResize.php';
 $mysock1 = getimagesize("./img/pic1.jpg");
 $mysock2 = getimagesize("./img/pic2.jpg");
