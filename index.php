@@ -9,6 +9,15 @@ $mysock5 = getimagesize("./img/pic5.jpg");
 $mysock6 = getimagesize("./img/pic6.jpg");
 $mysock7 = getimagesize("./img/pic7.jpg");
 $mysock8 = getimagesize("./img/pic8.jpg");
+
+$profile1 = getimagesize("./img/profile1.jpeg");
+$profile2 = getimagesize("./img/profile2.png");
+$profile3 = getimagesize("./img/profile3.png");
+$profile4 = getimagesize("./img/profile4.png");
+$profile5 = getimagesize("./img/profile5.png");
+$profile6 = getimagesize("./img/profile6.png");
+$profile7 = getimagesize("./img/profile7.png");
+$profile8 = getimagesize("./img/profile8.png");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +84,126 @@ $mysock8 = getimagesize("./img/pic8.jpg");
           </div>
         </div>
       </section>
+
+      <!-- Profile Section -->
+
+      <section id="profile" class="text-center text-white mt-5">
+        <div class="row my-5 justify-content-center">
+          <div class="col-md-12 mt-5">
+            <h1 class="text-white text-center">Some Members...!</h1>
+          </div>
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- card 1 -->
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile1.jpeg" <?php echo imageResize($profile1[0], $profile1[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Kashmira Bade</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile2.png" <?php echo imageResize($profile2[0], $profile2[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Pratiksha Jadha</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile3.png" <?php echo imageResize($profile3[0], $profile3[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Pooja Sutar</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile4.png" <?php echo imageResize($profile4[0], $profile4[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Shivkanya Tambde</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile5.png" <?php echo imageResize($profile5[0], $profile5[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Bhushan Jagtap</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile6.png" <?php echo imageResize($profile6[0], $profile6[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Sachin Chavan</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile7.png" <?php echo imageResize($profile7[0], $profile7[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Mahendra Chavan</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3">
+              <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                <div class="person-img">
+                  <img src="./img/profile8.png" <?php echo imageResize($profile8[0], $profile8[1], 250); ?> alt="profile-picture">
+                </div>
+                <div class="person-name my-2">
+                  <h3 class="text-white">Prajwal Jadhav</h3>
+                </div>
+                <div class="info">
+                  <h6 class="text-white">To view profile join us</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile section -->
+
       <section>
         <div class="p-5 text-center bg-image" style="background-image: url('./img/5.jpg');height: 300px;">
           <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
@@ -90,14 +219,14 @@ $mysock8 = getimagesize("./img/pic8.jpg");
       <section id="success container" class="text-center">
         <div class="row my-5 justify-content-center">
           <div class="col-md-12 mt-5">
-            <h2 class="text-white text-center">Search For Match Here........</h2>
+            <h1 class="text-white text-center">Success Stories...!</h1>
           </div>
           <div class="row row-cols-1 row-cols-md-4 g-4">
             <!-- card 1 -->
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic1.jpg" <?php echo imageResize($mysock1[0],$mysock1[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic1.jpg" <?php echo imageResize($mysock1[0], $mysock1[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Prakash & Swati</h3>
@@ -110,7 +239,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic2.jpg" <?php echo imageResize($mysock2[0],$mysock2[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic2.jpg" <?php echo imageResize($mysock2[0], $mysock2[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Govind & Mitali</h3>
@@ -123,7 +252,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic3.jpg" <?php echo imageResize($mysock3[0],$mysock3[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic3.jpg" <?php echo imageResize($mysock3[0], $mysock3[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Anand & Gauri</h3>
@@ -136,7 +265,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic4.jpg" <?php echo imageResize($mysock4[0],$mysock4[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic4.jpg" <?php echo imageResize($mysock4[0], $mysock4[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Ranjeet & Mansi</h3>
@@ -149,7 +278,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic5.jpg" <?php echo imageResize($mysock5[0],$mysock5[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic5.jpg" <?php echo imageResize($mysock5[0], $mysock5[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Bhushan & Manisha</h3>
@@ -162,7 +291,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic6.jpg" <?php echo imageResize($mysock6[0],$mysock6[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic6.jpg" <?php echo imageResize($mysock6[0], $mysock6[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Manoj & Kirti</h3>
@@ -175,7 +304,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic7.jpg" <?php echo imageResize($mysock7[0],$mysock7[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic7.jpg" <?php echo imageResize($mysock7[0], $mysock7[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Divesh & Mrunal</h3>
@@ -188,7 +317,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
             <div class="col-lg-3 col-md-4 col-sm-3">
               <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                 <div class="person-img">
-                  <img src="./img/pic8.jpg" <?php echo imageResize($mysock8[0],$mysock8[1], 250); ?> alt="profile-picture">
+                  <img src="./img/pic8.jpg" <?php echo imageResize($mysock8[0], $mysock8[1], 250); ?> alt="profile-picture">
                 </div>
                 <div class="person-name my-2">
                   <h3 class="text-white">Naresh & Khushbu</h3>
@@ -231,7 +360,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
               </div>
               <div class="card-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">8 months validity</li>
+                  <li class="list-group-item">10 months validity</li>
                   <li class="list-group-item">Unlimited profile search</li>
                   <li class="list-group-item">Unlimited profile visits</li>
                   <li class="list-group-item">Unlimited matches</li>
@@ -270,7 +399,7 @@ $mysock8 = getimagesize("./img/pic8.jpg");
               </div>
               <div class="card-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">12 months validity</li>
+                  <li class="list-group-item">Till Marriage</li>
                   <li class="list-group-item">Unlimited profile search</li>
                   <li class="list-group-item">Unlimited profile visits</li>
                   <li class="list-group-item">Unlimited matches</li>
