@@ -80,15 +80,27 @@
         repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
         eum harum corrupti dicta, aliquam sequi voluptate quas.
       </p>
-    </section>
-    Section: Text -->
+    </section> -->
+    <!-- Section: Text -->
 
     <!-- Section: Links -->
-    <!-- <section class="">
-      Grid row
+    <section class="">
+      <!-- Grid row -->
       <div class="row">
-        Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Address</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <h6>Maharashtra,India</h6>
+            </li>
+          </ul>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <!-- <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
           <ul class="list-unstyled mb-0">
@@ -105,11 +117,11 @@
               <a href="#!" class="text-white">Link 4</a>
             </li>
           </ul>
-        </div>
-        Grid column
+        </div> -->
+        <!-- Grid column -->
 
-        Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <!-- Grid column -->
+        <!-- <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Links</h5>
 
           <ul class="list-unstyled mb-0">
@@ -126,53 +138,23 @@
               <a href="#!" class="text-white">Link 4</a>
             </li>
           </ul>
-        </div>
-        Grid column
+        </div> -->
+        <!-- Grid column -->
 
-        Grid column
+        <!-- Grid column -->
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
+          <h5 class="text-uppercase">Contact Number</h5>
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <h6><a href="tel:+918446085754">Make a call : 8446085754</a></h6>
             </li>
           </ul>
         </div>
-        Grid column
-
-        Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        Grid column
+        <!-- Grid column -->
       </div>
-      Grid row
-    </section> -->
+      <!-- Grid row -->
+    </section>
     <!-- Section: Links -->
   </div>
   <!-- Grid container -->
