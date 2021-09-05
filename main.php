@@ -6,8 +6,63 @@ if (!isset($_SESSION['userid'])) {
 }
 include './database.model.php';
 include './imgResize.php';
-$query = "select * from profile";
-$result = mysqli_query($conn, $query);
+$getRequest = false;
+$qualificationSet = false;
+$castSet = false;
+$selectedBoth = false;
+$bothSelected = array();
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    if(isset($_POST['filter']))
+    {
+        $qualification = $_POST['qualification'];
+        $cast = $_POST['cast'];
+        
+        if($qualification=='All' && $cast=='All')
+        {
+            $query = "select * from profile";
+            $result = mysqli_query($conn, $query);
+            $getRequest = true;
+        }
+        elseif(!$qualification=='All' || $cast=='All')
+        {
+            $query = "select userid from proffessional_info where highest_qualification = '$qualification'";
+            $qualification_result = mysqli_query($conn, $query);
+            $qualificationSet = true;
+            
+        }
+        elseif($qualification=='All' || !$cast=='All')
+        {
+            $query = "select userid from personal_info where cast = '$cast'";
+            $cast_result = mysqli_query($conn, $query);
+            $castSet = true;
+        }
+        else
+        {
+            $query = "select userid from proffessional_info where highest_qualification = '$qualification'";
+            $qualification_result = mysqli_query($conn,$query);
+            while($qualification_row = mysqli_fetch_assoc($qualification_result))
+            {
+                $query = "select userid from personal_info where cast = '$cast'";
+                $cast_result = mysqli_query($conn,$query);
+                while($cast_row = mysqli_fetch_assoc($cast_result))
+                {
+                    if(($qualification_row['userid']) == ($cast_row['userid']))
+                    {
+                        array_push($bothSelected,$cast_row['userid']);
+                    }
+                }
+            }
+            $selectedBoth = true;
+        }
+    }
+}
+else
+{
+    $query = "select * from profile";
+    $result = mysqli_query($conn, $query);
+    $getRequest = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,23 +114,23 @@ $result = mysqli_query($conn, $query);
             <div class="row my-5">
                 <div class="col-md-12 mt-5">
                     <h2 class="text-white text-center">Search For Match Here........</h2>
-                    <form action="#" method="post">
+                    <form action="./main.php" method="post">
                         <div class="input-group">
-                            <select class="form-select mt-3" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
                                 <option selected>All</option>
                                 <?php
                                 $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
                                 $qualification = mysqli_query($conn, $query);
                                 while ($row = mysqli_fetch_assoc($qualification)) {
                                 ?>
-                                    <option value=<?php echo $row['highest_qualification'] ?>><?php echo $row['highest_qualification'] ?></option>
+                                    <option value=<?php echo $row['highest_qualification']; ?>><?php echo $row['highest_qualification'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="input-group mt-3">
-                            <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
                                 <option selected>All</option>
                                 <?php
                                 $query = "SELECT DISTINCT cast FROM personal_info";
@@ -88,7 +143,7 @@ $result = mysqli_query($conn, $query);
                                 ?>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Apply filter</button>
+                        <button type="submit" name="filter" class="btn btn-primary mt-3">Apply filter</button>
                     </form>
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -112,18 +167,20 @@ $result = mysqli_query($conn, $query);
                         </div>
                     </div> -->
                     <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $userid = $row['userid'];
-                        $query = "select * from users where userid = '$userid'";
-                        $result = mysqli_query($conn, $query);
-                        $details = mysqli_fetch_assoc($result);
-                        $query = "select * from pictures where userid = '$userid'";
-                        $result1 = mysqli_query($conn, $query);
-                        $pictures = mysqli_fetch_assoc($result1);
-                        $mysock = getimagesize($pictures['profilepic']);
-                        $query = "select * from profile where userid = '$myid'";
-                        $result = mysqli_query($conn, $query);
-                        $personal = mysqli_fetch_assoc($result);
+                    if($getRequest)
+                    {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $userid = $row['userid'];
+                            $query = "select * from users where userid = '$userid'";
+                            $result = mysqli_query($conn, $query);
+                            $details = mysqli_fetch_assoc($result);
+                            $query = "select * from pictures where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query);
+                            $pictures = mysqli_fetch_assoc($result1);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $query = "select * from profile where userid = '$myid'";
+                            $result = mysqli_query($conn, $query);
+                            $personal = mysqli_fetch_assoc($result);
                     ?>
                         <div class="col-lg-3 col-md-4 col-sm-3">
                             <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
@@ -158,6 +215,162 @@ $result = mysqli_query($conn, $query);
                             </div>
                         </div>
                     <?php
+                        }
+                    }
+                    elseif($qualificationSet)
+                    {
+                        while($qualification_row = mysqli_fetch_assoc($qualification_result))
+                        {
+                            $userid = $qualification_row['userid'];
+                            $query = "select * from users where userid = '$userid'";
+                            $result = mysqli_query($conn, $query);
+                            $details = mysqli_fetch_assoc($result);
+                            $query = "select * from pictures where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query);
+                            $pictures = mysqli_fetch_assoc($result1);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $query = "select * from profile where userid = '$myid'";
+                            $result = mysqli_query($conn, $query);
+                            $personal = mysqli_fetch_assoc($result);
+                    ?>
+                            <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                <div class="person-img">
+                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
+                                </div>
+                                <div class="person-name my-2 text-center">
+                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                </div>
+                                <!-- <div class="info">
+                                        <h6 class="text-white">Web Developer</h6>
+                                    </div> -->
+                                <!-- <div class="social-icons">
+                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
+                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
+                                    </div> -->
+                                <?php
+                                if ($personal['isactive'] == 0) {
+
+                                ?>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                        View Profile
+                                    </button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>      
+                    <?php
+                        }
+                    }
+                    elseif($castSet)
+                    {
+                        while($cast_row = mysqli_fetch_assoc($cast_result))
+                        {
+                            $userid = $cast_row['userid'];
+                            $query = "select * from users where userid = '$userid'";
+                            $result = mysqli_query($conn, $query);
+                            $details = mysqli_fetch_assoc($result);
+                            $query = "select * from pictures where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query);
+                            $pictures = mysqli_fetch_assoc($result1);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $query = "select * from profile where userid = '$myid'";
+                            $result = mysqli_query($conn, $query);
+                            $personal = mysqli_fetch_assoc($result);
+                    ?>
+                            <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                <div class="person-img">
+                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
+                                </div>
+                                <div class="person-name my-2 text-center">
+                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                </div>
+                                <!-- <div class="info">
+                                        <h6 class="text-white">Web Developer</h6>
+                                    </div> -->
+                                <!-- <div class="social-icons">
+                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
+                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
+                                    </div> -->
+                                <?php
+                                if ($personal['isactive'] == 0) {
+
+                                ?>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                        View Profile
+                                    </button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>      
+                    <?php
+                        }
+                    }
+                    elseif($selectedBoth)
+                    {
+                        foreach($bothSelected as $userid)
+                        {
+                            $query = "select * from users where userid = '$userid'";
+                            $result = mysqli_query($conn, $query);
+                            $details = mysqli_fetch_assoc($result);
+                            $query = "select * from pictures where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query);
+                            $pictures = mysqli_fetch_assoc($result1);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $query = "select * from profile where userid = '$myid'";
+                            $result = mysqli_query($conn, $query);
+                            $personal = mysqli_fetch_assoc($result);
+                    ?>
+                            <script>
+                                console.log('<?php echo $userid ?>');
+                            </script>
+                            <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                <div class="person-img">
+                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
+                                </div>
+                                <div class="person-name my-2 text-center">
+                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                </div>
+                                <!-- <div class="info">
+                                        <h6 class="text-white">Web Developer</h6>
+                                    </div> -->
+                                <!-- <div class="social-icons">
+                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
+                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
+                                    </div> -->
+                                <?php
+                                if ($personal['isactive'] == 0) {
+
+                                ?>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                        View Profile
+                                    </button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>      
+                    <?php
+                        }
                     }
                     ?>
                 </div>
