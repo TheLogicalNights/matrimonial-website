@@ -59,6 +59,37 @@ $result = mysqli_query($conn, $query);
             <div class="row my-5">
                 <div class="col-md-12 mt-5">
                     <h2 class="text-white text-center">Search For Match Here........</h2>
+                    <form action="#" method="post">
+                        <div class="input-group">
+                            <select class="form-select mt-3" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option selected>All</option>
+                                <?php
+                                $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
+                                $qualification = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_assoc($qualification)) {
+                                ?>
+                                    <option value=<?php echo $row['highest_qualification'] ?>><?php echo $row['highest_qualification'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="input-group mt-3">
+                            <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option selected>All</option>
+                                <?php
+                                $query = "SELECT DISTINCT cast FROM personal_info";
+                                $cast = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_assoc($cast)) {
+                                ?>
+                                    <option value=<?php echo $row['cast'] ?>><?php echo $row['cast'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Apply filter</button>
+                    </form>
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- card 1 -->
@@ -120,7 +151,7 @@ $result = mysqli_query($conn, $query);
                                 <?php
                                 } else {
                                 ?>
-                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="#" role="button" rel="nofollow">View Profile</a>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
                                 <?php
                                 }
                                 ?>
