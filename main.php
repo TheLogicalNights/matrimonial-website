@@ -115,6 +115,13 @@ else
                 <div class="col-md-12 mt-5">
                     <h2 class="text-white text-center">Search For Match Here........</h2>
                     <form action="./main.php" method="post">
+                        <div class="input-group mt-3">
+                            <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option selected>All</option>
+                                <option>Bride</option>
+                                <option>Groom</option>
+                            </select>
+                        </div>
                         <div class="input-group">
                             <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
                                 <option selected>All</option>
