@@ -18,15 +18,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $qualification = $_POST['qualification'];
         $cast = $_POST['cast'];
-        $gender = $_POST['category'];
-        
-        if($qualification=='All' && $cast=='All' && $gender=='All')
+        $gender = $_POST['gender'];
+
+        if($qualification=='All' && $cast=='All')
         {
             $query = "select * from profile";
             $result = mysqli_query($conn, $query);
             $getRequest = true;
         }
-        elseif(!$qualification=='All' || $cast=='All' || $gender=='All')
+        elseif(!$qualification=='All' || $cast=='All' || $gender='All')
         {
             $query = "select userid from proffessional_info where highest_qualification = '$qualification'";
             $qualification_result = mysqli_query($conn, $query);
@@ -39,10 +39,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             $cast_result = mysqli_query($conn, $query);
             $castSet = true;
         }
-        elseif($qualification=='All' || !$cast=='All' || $gender='All')
+        elseif($qualification=='All' || $cast=='All' || !$gender='All')
         {
             $query = "select userid from personal_info where gender = '$gender'";
-            $cast_result = mysqli_query($conn, $query);
+            $gender_result = mysqli_query($conn, $query);
             $genderSet = true;
         }
         else
@@ -124,7 +124,7 @@ else
                     <h2 class="text-white text-center">Search For Match Here........</h2>
                     <form action="./main.php" method="post">
                         <div class="input-group mt-3">
-                            <select class="form-select" name="category" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <select class="form-select" name="gender" id="inputGroupSelect04" aria-label="Example select with button addon">
                                 <option selected>All</option>
                                 <option value="female">Bride</option>
                                 <option value="male">Groom</option>
@@ -336,9 +336,9 @@ else
                     }
                     elseif($genderSet)
                     {
-                        while($cast_row = mysqli_fetch_assoc($cast_result))
+                        while($gender_row = mysqli_fetch_assoc($gender_result))
                         {
-                            $userid = $cast_row['userid'];
+                            $userid = $gender_row['userid'];
                             $query = "select * from users where userid = '$userid'";
                             $result = mysqli_query($conn, $query);
                             $details = mysqli_fetch_assoc($result);
@@ -400,9 +400,6 @@ else
                             $result = mysqli_query($conn, $query);
                             $personal = mysqli_fetch_assoc($result);
                     ?>
-                            <script>
-                                console.log('<?php echo $userid ?>');
-                            </script>
                             <div class="col-lg-3 col-md-4 col-sm-3">
                             <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
                                 <div class="person-img">
