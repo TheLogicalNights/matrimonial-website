@@ -326,4 +326,12 @@
             header("Location: ./joinus.php");
         }
     }
+    else
+    {
+        if(isset($_GET['signout']))
+        {
+            session_unset();
+            header("Location: adminlogin.php");
+        }
+    }
 ?>
