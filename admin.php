@@ -216,8 +216,8 @@ $deactiveusercounter=0;
                                 <td><?php echo $activeusercounter; ?></td>
                                 <td><?php echo $personal['first_name'] . " " . $personal['last_name']; ?></td>
                                 <td>
-                                    <form action='#' method='POST'>
-                                        <!-- <input type='hidden' name='username' id='visit' value=<?php echo $row['uname']; ?>> -->
+                                    <form action='./code.php' method='POST'>
+                                        <input type='hidden' name='userid' id='visit' value=<?php echo $personal['userid']; ?>>
                                         <button type='submit' name='deactivate' class='btn btn-sm btn-outline-danger'>Deactivate</button>
                                     </form>
                                 </td>
@@ -245,7 +245,7 @@ $deactiveusercounter=0;
                     <?php
                     while ($deactiveusers = mysqli_fetch_assoc($deactive_profiles)) {
                         $userid = $deactiveusers['userid'];
-                        $query6 = "SELECT first_name,last_name from personal_info where userid = '$userid'";
+                        $query6 = "SELECT userid,first_name,last_name from personal_info where userid = '$userid'";
                         $Deactive_users_info = mysqli_query($conn, $query6);
                         $deactiveusercounter++;
                         while ($personal = mysqli_fetch_assoc($Deactive_users_info)) {
@@ -255,9 +255,9 @@ $deactiveusercounter=0;
                                 <td><?php echo $deactiveusercounter; ?></td>
                                 <td><?php echo $personal['first_name'] . " " . $personal['last_name']; ?></td>
                                 <td>
-                                    <form action='#' method='POST'>
-                                        <!-- <input type='hidden' name='username' id='visit' value=<?php echo $row['uname']; ?>> -->
-                                        <button type='submit' name='deactivate' class='btn btn-sm btn-outline-success'>Activate</button>
+                                    <form action='./code.php' method='POST'>
+                                        <input type='hidden' name='userid' id='visit' value=<?php echo $personal['userid']; ?>>
+                                        <button type='submit' name='activate' class='btn btn-sm btn-outline-success'>Activate</button>
                                     </form>
                                 </td>
                             </tr>
@@ -270,29 +270,6 @@ $deactiveusercounter=0;
             </thead>
         </div>
     </main>
-    <!-- Deactivated Users -->
-    <!-- Add new User -->
-    <!-- <main class="mt-5 pt-3" id="addusers" style="display: none;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 fw-bold fs-3">
-                    Add Users
-                </div>
-            </div>
-        </div>
-    </main> -->
-    <!-- Add new User -->
-    <!-- change password -->
-    <!-- <main class="mt-5 pt-3" id="changepassword" style="display: none;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 fw-bold fs-3">
-                    Change Password
-                </div>
-            </div>
-        </div>
-    </main> -->
-    <!-- change password -->
     <!-- main section -->
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
