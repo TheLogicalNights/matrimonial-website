@@ -206,7 +206,7 @@ $deactiveusercounter=0;
                     <?php
                     while ($activeusers = mysqli_fetch_assoc($active_profiles)) {
                         $userid = $activeusers['userid'];
-                        $query5 = "SELECT first_name,last_name from personal_info where userid = '$userid'";
+                        $query5 = "SELECT userid,first_name,last_name from personal_info where userid = '$userid'";
                         $Active_users_info = mysqli_query($conn, $query5);
                         $activeusercounter++;
                         while ($personal = mysqli_fetch_assoc($Active_users_info)) {
