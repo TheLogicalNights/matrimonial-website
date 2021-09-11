@@ -325,9 +325,33 @@
             session_unset();
             header("Location: ./joinus.php");
         }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // Activate User
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['activate']))
+        {
+            $userid = $_POST['userid'];
+            
+            $query = "UPDATE profile SET isactive = 1 WHERE userid = '$userid'";
+            if(mysqli_query($conn,$query))
+            {
+                header("Location : admin.php");
+            }
+            else
+            {
+                echo mysqli_error($conn);
+            }
+        }
     }
     else
     {
+        ////////////////////////////////////////////////////////////////////
+        //
+        // Admin Logout
+        //
+        ///////////////////////////////////////////////////////////////////
         if(isset($_GET['signout']))
         {
             session_unset();
