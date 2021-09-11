@@ -12,8 +12,10 @@ $active_profiles = mysqli_query($conn, $query2);
 
 $query3 = "SELECT userid FROM profile where isactive='0'";
 $deactive_profiles = mysqli_query($conn, $query3);
+
 $allusercounter = 0;
 $activeusercounter = 0;
+$deactiveusercounter=0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -199,7 +201,7 @@ $activeusercounter = 0;
                     <tr>
                         <th scope='col'>Sr.No</th>
                         <th scope='col'>Name</th>
-                        <th scope='col'>  Action</th>
+                        <th scope='col'> Action</th>
                     </tr>
                     <?php
                     while ($activeusers = mysqli_fetch_assoc($active_profiles)) {
@@ -233,11 +235,39 @@ $activeusercounter = 0;
     <!-- Deactivated Users -->
     <main class="mt-5 pt-3" id="deavtivatedusers" style="display: none;">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 fw-bold fs-3">
-                    Deactivated Users
-                </div>
-            </div>
+            <table class='table mt-2' id="myTable2">
+                <thead>
+                    <tr>
+                        <th scope='col'>Sr.No</th>
+                        <th scope='col'>Name</th>
+                        <th scope='col'> Action</th>
+                    </tr>
+                    <?php
+                    while ($deactiveusers = mysqli_fetch_assoc($deactive_profiles)) {
+                        $userid = $deactiveusers['userid'];
+                        $query6 = "SELECT first_name,last_name from personal_info where userid = '$userid'";
+                        $Deactive_users_info = mysqli_query($conn, $query6);
+                        $deactiveusercounter++;
+                        while ($personal = mysqli_fetch_assoc($Deactive_users_info)) {
+                    ?>
+
+                            <tr>
+                                <td><?php echo $deactiveusercounter; ?></td>
+                                <td><?php echo $personal['first_name'] . " " . $personal['last_name']; ?></td>
+                                <td>
+                                    <form action='#' method='POST'>
+                                        <!-- <input type='hidden' name='username' id='visit' value=<?php echo $row['uname']; ?>> -->
+                                        <button type='submit' name='deactivate' class='btn btn-sm btn-outline-success'>Activate</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                    <?php
+                        }
+                    }
+                    ?>
+            </table>
+            </thead>
         </div>
     </main>
     <!-- Deactivated Users -->
@@ -277,7 +307,8 @@ $activeusercounter = 0;
     <script>
         $(document).ready(function() {
             $('#myTable2').DataTable({
-                responsive: true
+                "responsive": true,
+                "searching": true
             });
         });
     </script>
