@@ -1,3 +1,28 @@
+<?php
+    session_start();
+    if(isset($_POST['login']))
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+          
+        if($username=='admin')
+        {
+            if($password=='admin')
+            {
+                $_SESSION['admin'] = true;
+                header("Location: admin.php");
+            }
+            else
+            {
+                $_SESSION['wrongpassword'] = "Error!..Unable to Login, Please enter a valid password...";
+            }
+        }
+        else
+        {
+            $_SESSION['wrongusername'] = "Error!..Unable to Login, Please enter a valid username...";
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +40,8 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/admin-style.css" />
+    <!-- sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="body">
@@ -24,6 +51,28 @@
         <?php
         include './adminnavbar.php';
         ?>
+    </header>
+    <?php
+            if(isset($_SESSION['wrongpassword']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['wrongpassword'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['wrongusername']);
+            }
+            if(isset($_SESSION['wrongusername']))
+            {
+                echo '
+                <script>
+                    swal("Oops..!", "'.$_SESSION['wrongusername'].'", "error");
+                </script>
+                ';
+                unset($_SESSION['wrongusername']);
+            }
+
+    ?>
         <!-- Navbar -->
         <main>
             <section class="login mt-5">
@@ -36,16 +85,16 @@
                             <div class="row">
                                 <div class="col-lg-7 mx-auto text-center mt-5">
                                     <h1 class="mt-5 mb-3 text-dark">SIGN UP</h1>
-                                    <form class="mt-5">
+                                    <form action="adminlogin.php" class="mt-5" method="POST">
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form1Example1" class="form-control" />
+                                            <input type="text" name="username" id="form1Example1" class="form-control" />
                                             <label class="form-label" for="form1Example1">Username</label>
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form1Example2" class="form-control" />
+                                            <input type="password" name="password" id="form1Example2" class="form-control" />
                                             <label class="form-label" for="form1Example2">Password</label>
                                         </div>
 
@@ -61,7 +110,7 @@
                                         </div>
 
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                        <button type="submit" name="login" class="btn btn-primary btn-block">Sign in</button>
                                     </form>
                                 </div>
                             </div>
