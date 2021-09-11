@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="body">
