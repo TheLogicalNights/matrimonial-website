@@ -337,7 +337,26 @@
             $query = "UPDATE profile SET isactive = 1 WHERE userid = '$userid'";
             if(mysqli_query($conn,$query))
             {
-                header("Location : admin.php");
+                header("Location: admin.php");
+            }
+            else
+            {
+                echo mysqli_error($conn);
+            }
+        }
+        ////////////////////////////////////////////////////////////////////
+        //
+        // Deactivate User
+        //
+        ///////////////////////////////////////////////////////////////////
+        if(isset($_POST['deactivate']))
+        {
+            $userid = $_POST['userid'];
+            
+            $query = "UPDATE profile SET isactive = 0 WHERE userid = '$userid'";
+            if(mysqli_query($conn,$query))
+            {
+                header("Location: admin.php");
             }
             else
             {
