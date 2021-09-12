@@ -6,71 +6,20 @@ if (!isset($_SESSION['userid'])) {
 }
 include './database.model.php';
 include './imgResize.php';
-$getRequest = false;
-$qualificationSet = false;
-$castSet = false;
-$selectedBoth = false;
-$genderSet = false;
-$bothSelected = array();
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
-    if(isset($_POST['filter']))
-    {
-        $qualification = $_POST['qualification'];
-        $cast = $_POST['cast'];
-        $gender = $_POST['gender'];
 
-        if($qualification=='All' && $cast=='All')
-        {
-            $query = "select * from profile";
-            $result = mysqli_query($conn, $query);
-            $getRequest = true;
-        }
-        elseif(!$qualification=='All' || $cast=='All' || $gender='All')
-        {
-            $query = "select userid from proffessional_info where highest_qualification = '$qualification'";
-            $qualification_result = mysqli_query($conn, $query);
-            $qualificationSet = true;
-            
-        }
-        elseif($qualification=='All' || !$cast=='All' || $gender='All')
-        {
-            $query = "select userid from personal_info where cast = '$cast'";
-            $cast_result = mysqli_query($conn, $query);
-            $castSet = true;
-        }
-        elseif($qualification=='All' || $cast=='All' || !$gender='All')
-        {
-            $query = "select userid from personal_info where gender = '$gender'";
-            $gender_result = mysqli_query($conn, $query);
-            $genderSet = true;
-        }
-        else
-        {
-            $query = "select userid from proffessional_info where highest_qualification = '$qualification'";
-            $qualification_result = mysqli_query($conn,$query);
-            while($qualification_row = mysqli_fetch_assoc($qualification_result))
-            {
-                $query = "select userid from personal_info where cast = '$cast'";
-                $cast_result = mysqli_query($conn,$query);
-                while($cast_row = mysqli_fetch_assoc($cast_result))
-                {
-                    if(($qualification_row['userid']) == ($cast_row['userid']))
-                    {
-                        array_push($bothSelected,$cast_row['userid']);
-                    }
-                }
-            }
-            $selectedBoth = true;
-        }
-    }
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+    $gender = $_POST['gender'];
+    $education = $_POST['qualification'];
+    $cast = $_POST['cast'];
+    $city = $_POST['city'];
 }
-else
+else 
 {
     $query = "select * from profile";
-    $result = mysqli_query($conn, $query);
+    $getRequestResult = mysqli_query($conn, $query);
     $getRequest = true;
-}
+}    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,6 +107,20 @@ else
                                 ?>
                             </select>
                         </div>
+                        <div class="input-group">
+                            <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option selected>All</option>
+                                <?php
+                                $query = "SELECT DISTINCT city FROM address_info";
+                                $city = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_assoc($city)) {
+                                ?>
+                                    <option value=<?php echo $row['city']; ?>><?php echo $row['city'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <button type="submit" name="filter" class="btn btn-primary mt-3">Apply filter</button>
                     </form>
                 </div>
@@ -184,18 +147,18 @@ else
                     <?php
                     if($getRequest)
                     {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $userid = $row['userid'];
-                            $query = "select * from users where userid = '$userid'";
-                            $result = mysqli_query($conn, $query);
-                            $details = mysqli_fetch_assoc($result);
-                            $query = "select * from pictures where userid = '$userid'";
-                            $result1 = mysqli_query($conn, $query);
-                            $pictures = mysqli_fetch_assoc($result1);
+                        while ($getRequestRow = mysqli_fetch_assoc($getRequestResult)) {
+                            $userid = $getRequestRow['userid'];
+                            $query1 = "select * from users where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query1);
+                            $details = mysqli_fetch_assoc($result1);
+                            $query2 = "select * from pictures where userid = '$userid'";
+                            $result2 = mysqli_query($conn, $query2);
+                            $pictures = mysqli_fetch_assoc($result2);
                             $mysock = getimagesize($pictures['profilepic']);
-                            $query = "select * from profile where userid = '$myid'";
-                            $result = mysqli_query($conn, $query);
-                            $personal = mysqli_fetch_assoc($result);
+                            $query3 = "select * from profile where userid = '$myid'";
+                            $result3 = mysqli_query($conn, $query3);
+                            $personal = mysqli_fetch_assoc($result3);
                     ?>
                         <div class="col-lg-3 col-md-4 col-sm-3">
                             <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
