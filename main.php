@@ -50,6 +50,19 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         $cityResult = mysqli_query($conn, $query);
         $citySet = true;
     }
+    elseif(($gender!='all' && $education!='all') && ($cast=='all' && $city=='all'))
+    {
+        echo "gender and education selected";
+    }
+    elseif(($gender!='all' && $cast!='all') &&  ($education=='all' && $city=='all'))
+    {
+        echo "gender and cast selected";
+    }
+    elseif(($gender!='all' && $education!='all') && ($cast=='all' && $city='all'))
+    {
+        echo "gender and education selected";
+    }
+
 }
 else 
 {
