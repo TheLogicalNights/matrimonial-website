@@ -10,6 +10,7 @@ $getRequest = false;
 $genderSelected = false;
 $qualificationSet = false;
 $castSet = false;
+$citySet = false;
 $selectedBoth = false;
 
 if($_SERVER['REQUEST_METHOD']=='POST')
@@ -33,11 +34,15 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     }
     elseif($gender=='all' && $education!='all' && $cast=='all' && $city=='all')
     {
-        echo "education selected";
+        $query = "SELECT userid from proffessional_info WHERE highest_qualification = '$education'";
+        $educationResult = mysqli_query($conn, $query);
+        $qualificationSet = false;
     }
     elseif($gender=='all' && $education=='all' && $cast!='all' && $city=='all')
     {
-        echo "cast selected";
+        $query = "SELECT userid from personal_info WHERE cast = '$cast'";
+        $castResult = mysqli_query($conn, $query);
+        $castSet = true;
     }
     elseif($gender=='all' && $education=='all' && $cast=='all' && $city!='all')
     {
@@ -277,7 +282,7 @@ else
                     }
                     elseif($qualificationSet)
                     {
-                        while($qualification_row = mysqli_fetch_assoc($qualification_result))
+                        while($qualification_row = mysqli_fetch_assoc($educationResult))
                         {
                             $userid = $qualification_row['userid'];
                             $query = "select * from users where userid = '$userid'";
@@ -328,7 +333,7 @@ else
                     }
                     elseif($castSet)
                     {
-                        while($cast_row = mysqli_fetch_assoc($cast_result))
+                        while($cast_row = mysqli_fetch_assoc($castResult))
                         {
                             $userid = $cast_row['userid'];
                             $query = "select * from users where userid = '$userid'";
