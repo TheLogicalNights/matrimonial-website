@@ -6,6 +6,11 @@ if (!isset($_SESSION['userid'])) {
 }
 include './database.model.php';
 include './imgResize.php';
+$getRequest = false;
+$genderSelected = false;
+$qualificationSet = false;
+$castSet = false;
+$selectedBoth = false;
 
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -22,7 +27,9 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     }
     elseif($gender!='all' && $education=='all' && $cast=='all' && $city=='all')
     {
-        echo "gender selected";
+        $query = "SELECT userid from personal_info WHERE gender = '$gender'";
+        $genderResult = mysqli_query($conn, $query);
+        $genderSelected = true;
     }
     elseif($gender=='all' && $education!='all' && $cast=='all' && $city=='all')
     {
@@ -218,6 +225,56 @@ else
                     <?php
                         }
                     }
+                    if($genderSelected)
+                    {
+                        while ($genderRow = mysqli_fetch_assoc($genderResult)) {
+                            $userid = $genderRow['userid'];
+                            $query1 = "select * from users where userid = '$userid'";
+                            $result1 = mysqli_query($conn, $query1);
+                            $details = mysqli_fetch_assoc($result1);
+                            $query2 = "select * from pictures where userid = '$userid'";
+                            $result2 = mysqli_query($conn, $query2);
+                            $pictures = mysqli_fetch_assoc($result2);
+                            $mysock = getimagesize($pictures['profilepic']);
+                            $query3 = "select * from profile where userid = '$myid'";
+                            $result3 = mysqli_query($conn, $query3);
+                            $personal = mysqli_fetch_assoc($result3);
+                    ?>
+                        <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
+                                <div class="person-img">
+                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
+                                </div>
+                                <div class="person-name my-2 text-center">
+                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
+                                </div>
+                                <!-- <div class="info">
+                                        <h6 class="text-white">Web Developer</h6>
+                                    </div> -->
+                                <!-- <div class="social-icons">
+                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
+                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
+                                    </div> -->
+                                <?php
+                                if ($personal['isactive'] == 0) {
+
+                                ?>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                        View Profile
+                                    </button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <?php
+                        }
+                    }
                     elseif($qualificationSet)
                     {
                         while($qualification_row = mysqli_fetch_assoc($qualification_result))
@@ -274,57 +331,6 @@ else
                         while($cast_row = mysqli_fetch_assoc($cast_result))
                         {
                             $userid = $cast_row['userid'];
-                            $query = "select * from users where userid = '$userid'";
-                            $result = mysqli_query($conn, $query);
-                            $details = mysqli_fetch_assoc($result);
-                            $query = "select * from pictures where userid = '$userid'";
-                            $result1 = mysqli_query($conn, $query);
-                            $pictures = mysqli_fetch_assoc($result1);
-                            $mysock = getimagesize($pictures['profilepic']);
-                            $query = "select * from profile where userid = '$myid'";
-                            $result = mysqli_query($conn, $query);
-                            $personal = mysqli_fetch_assoc($result);
-                    ?>
-                            <div class="col-lg-3 col-md-4 col-sm-3">
-                            <div class="shadow d-flex justify-content-center align-items-center p-3 bg-dark rounded-lg flex-column">
-                                <div class="person-img">
-                                    <img src="<?php echo $pictures['profilepic']; ?>" <?php echo imageResize($mysock[0], $mysock[1], 250); ?> alt="profile-picture">
-                                </div>
-                                <div class="person-name my-2 text-center">
-                                    <h3 class="text-white"><?php echo $details['name']; ?></h3>
-                                </div>
-                                <!-- <div class="info">
-                                        <h6 class="text-white">Web Developer</h6>
-                                    </div> -->
-                                <!-- <div class="social-icons">
-                                        <a href="#" class="text-white"><i class="fab fa-facebook p-2 fa-lg"></i></a>
-                                        <a href="#" class="text-white"><i class="fab fa-instagram p-2 fa-lg"></i></a>
-                                    </div> -->
-                                <?php
-                                if ($personal['isactive'] == 0) {
-
-                                ?>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-dark btn-lg btn-block mt-2 my-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-                                        View Profile
-                                    </button>
-                                <?php
-                                } else {
-                                ?>
-                                    <a class="btn btn-dark btn-lg btn-block mt-2 my-2" href="./visitprofile.php?userid=<?php echo $userid ?>" role="button" rel="nofollow">View Profile</a>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>      
-                    <?php
-                        }
-                    }
-                    elseif($genderSet)
-                    {
-                        while($gender_row = mysqli_fetch_assoc($gender_result))
-                        {
-                            $userid = $gender_row['userid'];
                             $query = "select * from users where userid = '$userid'";
                             $result = mysqli_query($conn, $query);
                             $details = mysqli_fetch_assoc($result);
