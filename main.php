@@ -58,11 +58,22 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     {
         echo "gender and cast selected";
     }
-    elseif(($gender!='all' && $education!='all') && ($cast=='all' && $city='all'))
+    elseif(($gender!='all' && $city!='all') && ($cast=='all' && $education=='all'))
     {
-        echo "gender and education selected";
+        echo "gender and city selected";
     }
-
+    elseif(($education!='all' && $cast!='all') && $city=='all')
+    {
+        echo "education and cast selected";
+    }
+    elseif(($education!='all' && $city!='all') && $cast=='all')
+    {
+        echo "education and city selected";
+    }
+    elseif($city!='all' && $cast!='all')
+    {
+        echo "cast and city selected";
+    }
 }
 else 
 {
