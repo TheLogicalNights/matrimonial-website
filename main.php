@@ -6,12 +6,20 @@ if (!isset($_SESSION['userid'])) {
 }
 include './database.model.php';
 include './imgResize.php';
+
+// Flags
 $getRequest = false;
 $genderSelected = false;
 $qualificationSet = false;
 $castSet = false;
 $citySet = false;
 $selectedBoth = false;
+$gendereducationSet = false;
+
+// Arrays
+$gendereducation = array();
+
+
 
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -52,7 +60,21 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     }
     elseif(($gender!='all' && $education!='all') && ($cast=='all' && $city=='all'))
     {
-        echo "gender and education selected";
+        $query = "SELECT userid from personal_info WHERE gender = '$gender'";
+        $genderResult = mysqli_query($conn, $query);
+        while($genderRow = mysqli_fetch_assoc($genderResult))
+        {
+            $query = "SELECT userid from proffessional_info WHERE highest_qualification = '$education'";
+            $educationResult = mysqli_query($conn, $query);
+            while($educationRow = mysqli_fetch_assoc($educationResult))
+            {
+                if(($genderRow['userid']) == ($educationRow['userid']))
+                {
+                    array_push($gendereducation,$educationRow['userid']);
+                }
+            }
+        }
+        $gendereducationSet = true;
     }
     elseif(($gender!='all' && $cast!='all') &&  ($education=='all' && $city=='all'))
     {
@@ -459,9 +481,9 @@ else
                     <?php
                         }
                     }
-                    elseif($selectedBoth)
+                    elseif($gendereducationSet)
                     {
-                        foreach($bothSelected as $userid)
+                        foreach($gendereducation as $userid)
                         {
                             $query = "select * from users where userid = '$userid'";
                             $result = mysqli_query($conn, $query);
