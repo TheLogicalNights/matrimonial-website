@@ -13,6 +13,13 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $education = $_POST['qualification'];
     $cast = $_POST['cast'];
     $city = $_POST['city'];
+
+    if($gender=='all' && $education=='all' && $cast=='all' && $city=='all')
+    {
+        $query = "select * from profile";
+        $getRequestResult = mysqli_query($conn, $query);
+        $getRequest = true;
+    }
 }
 else 
 {
@@ -74,14 +81,14 @@ else
                     <form action="./main.php" method="post">
                         <div class="input-group mt-3">
                             <select class="form-select" name="gender" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option selected>All</option>
+                                <option value="all" selected>All</option>
                                 <option value="female">Bride</option>
                                 <option value="male">Groom</option>
                             </select>
                         </div>
                         <div class="input-group">
                             <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option selected>All</option>
+                                <option value="all" selected>All</option>
                                 <?php
                                 $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
                                 $qualification = mysqli_query($conn, $query);
@@ -95,7 +102,7 @@ else
                         </div>
                         <div class="input-group mt-3">
                             <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option selected>All</option>
+                                <option value="all" selected>All</option>
                                 <?php
                                 $query = "SELECT DISTINCT cast FROM personal_info";
                                 $cast = mysqli_query($conn, $query);
@@ -108,8 +115,8 @@ else
                             </select>
                         </div>
                         <div class="input-group">
-                            <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option selected>All</option>
+                            <select class="form-select mt-3" name="city" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option value="all" selected>All</option>
                                 <?php
                                 $query = "SELECT DISTINCT city FROM address_info";
                                 $city = mysqli_query($conn, $query);
