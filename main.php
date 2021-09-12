@@ -32,6 +32,10 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     {
         echo "cast selected";
     }
+    elseif($gender=='all' && $education=='all' && $cast=='all' && $city!='all')
+    {
+        echo "city selected";
+    }
 }
 else 
 {
