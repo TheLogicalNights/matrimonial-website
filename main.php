@@ -20,6 +20,14 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         $getRequestResult = mysqli_query($conn, $query);
         $getRequest = true;
     }
+    elseif($gender!='all' && $education=='all' && $cast=='all' && $city=='all')
+    {
+        echo "gender selected";
+    }
+    elseif($gender=='all' && $education!='all' && $cast=='all' && $city=='all')
+    {
+        echo "education selected";
+    }
 }
 else 
 {
