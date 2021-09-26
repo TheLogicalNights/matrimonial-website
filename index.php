@@ -54,7 +54,17 @@ $profile8 = getimagesize("./img/profile8.png");
           <div class="text-white">
             <h1 class="mb-3">Meet Mr. & Meet Mrs.</h1>
             <h4 class="mb-4">Love Stories Begins From Here.</h4>
-            <a class="btn btn-outline-light btn-lg m-2" href="./joinus.php" role="button" rel="nofollow">Click To Join Us</a>
+            <?php
+            if (isset($_SESSION['userid'])) {
+            ?>
+              <a class="btn btn-outline-light btn-lg m-2" href="#filters" role="button" rel="nofollow">Apply filters and find match</a>
+            <?php
+            } else {
+            ?>
+              <a class="btn btn-outline-light btn-lg m-2" href="./joinus.php" role="button" rel="nofollow">Click To Join Us</a>
+            <?php
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -73,65 +83,65 @@ $profile8 = getimagesize("./img/profile8.png");
           </div>
         </div>
       </section>
-      <section class="container">
+      <section class="container" id="filters">
         <div class="row my-5">
-      <div class="col-md-12 mt-5">
-                    <h2 class="text-white text-center">Search For Match Here........</h2>
-                    <form action="./main.php" method="post">
-                        <div class="input-group mt-3">
-                            <select class="form-select" name="gender" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <option value="female">Bride</option>
-                                <option value="male">Groom</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
-                                $qualification = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($qualification)) {
-                                ?>
-                                    <option value=<?php echo $row['highest_qualification']; ?>><?php echo $row['highest_qualification'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-group mt-3">
-                            <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT cast FROM personal_info";
-                                $cast = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($cast)) {
-                                ?>
-                                    <option value=<?php echo $row['cast'] ?>><?php echo $row['cast'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select mt-3" name="city" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT city FROM address_info";
-                                $city = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($city)) {
-                                ?>
-                                    <option value=<?php echo $row['city']; ?>><?php echo $row['city'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <button type="submit" name="filter" class="btn btn-primary mt-3">Apply filter</button>
-                    </form>
-                </div>
-                </div>
-              </section>
+          <div class="col-md-12 mt-5">
+            <h2 class="text-white text-center">Search For Match Here........</h2>
+            <form action="./main.php" method="post">
+              <div class="input-group mt-3">
+                <select class="form-select" name="gender" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <option value="all" selected>All</option>
+                  <option value="female">Bride</option>
+                  <option value="male">Groom</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <option value="all" selected>All</option>
+                  <?php
+                  $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
+                  $qualification = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($qualification)) {
+                  ?>
+                    <option value=<?php echo $row['highest_qualification']; ?>><?php echo $row['highest_qualification'] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="input-group mt-3">
+                <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <option value="all" selected>All</option>
+                  <?php
+                  $query = "SELECT DISTINCT cast FROM personal_info";
+                  $cast = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($cast)) {
+                  ?>
+                    <option value=<?php echo $row['cast'] ?>><?php echo $row['cast'] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="input-group">
+                <select class="form-select mt-3" name="city" id="inputGroupSelect04" aria-label="Example select with button addon">
+                  <option value="all" selected>All</option>
+                  <?php
+                  $query = "SELECT DISTINCT city FROM address_info";
+                  $city = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($city)) {
+                  ?>
+                    <option value=<?php echo $row['city']; ?>><?php echo $row['city'] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <button type="submit" name="filter" class="btn btn-primary mt-3">Apply filter</button>
+            </form>
+          </div>
+        </div>
+      </section>
       <section id="about" class="text-center text-white">
         <h2 class="my-5">Our Promise:</h2>
         <div class="row justify-content-center align-items-center">
@@ -261,7 +271,7 @@ $profile8 = getimagesize("./img/profile8.png");
           </div>
         </div>
       </section>
-      
+
       <!-- Profile section -->
 
       <section>
@@ -486,7 +496,7 @@ $profile8 = getimagesize("./img/profile8.png");
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript"></script>
-  
+
 </body>
 
 </html>
