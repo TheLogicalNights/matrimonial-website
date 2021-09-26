@@ -63,7 +63,7 @@
                 else
                 {
                     $_SESSION['userid'] = $row['userid'];
-                    header("Location: ./main.php");
+                    header("Location: ./index.php");
                 }
             }
             else
@@ -269,7 +269,7 @@
                                     $query = "insert into pictures(userid, profilepic, pic1, pic2, pic3) values('$foldername','$target_file','$pic1','$pic2','$pic3')";
                                     if(mysqli_query($conn,$query))
                                     {
-                                        header("Location: ./main.php");  
+                                        header("Location: ./index.php");  
                                     }
                                     else
                                     {   
