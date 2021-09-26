@@ -231,61 +231,7 @@ else
         </div>
         <section class="container">
             <div class="row my-5">
-                <div class="col-md-12 mt-5">
-                    <h2 class="text-white text-center">Search For Match Here........</h2>
-                    <form action="./main.php" method="post">
-                        <div class="input-group mt-3">
-                            <select class="form-select" name="gender" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <option value="female">Bride</option>
-                                <option value="male">Groom</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select mt-3" name="qualification" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT highest_qualification FROM proffessional_info";
-                                $qualification = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($qualification)) {
-                                ?>
-                                    <option value=<?php echo $row['highest_qualification']; ?>><?php echo $row['highest_qualification'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-group mt-3">
-                            <select class="form-select" name="cast" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT cast FROM personal_info";
-                                $cast = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($cast)) {
-                                ?>
-                                    <option value=<?php echo $row['cast'] ?>><?php echo $row['cast'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <select class="form-select mt-3" name="city" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                <option value="all" selected>All</option>
-                                <?php
-                                $query = "SELECT DISTINCT city FROM address_info";
-                                $city = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($city)) {
-                                ?>
-                                    <option value=<?php echo $row['city']; ?>><?php echo $row['city'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <button type="submit" name="filter" class="btn btn-primary mt-3">Apply filter</button>
-                    </form>
-                </div>
+                
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- card 1 -->
                     <!-- <div class="col-lg-3 col-md-4 col-sm-3">
